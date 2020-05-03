@@ -44,7 +44,6 @@ tokenizers==0.7.0
 torch==1.5.0
 torchvision==0.6.0
 tqdm==4.46.0
-transformers @ file:///Users/crystal.butler/Documents/Code_Projects/RoBERTa_Embeddings/RoBERTa_embeddings/transformers
 urllib3==1.25.9
 Werkzeug==1.0.1
 wrapt==1.12.1
