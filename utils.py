@@ -44,7 +44,6 @@ def create_token_embeddings(model, tokenized_text):
         token_embeddings = torch.stack(encoded_layers, dim=0)  # Concatenate the tensors for all layers.
         token_embeddings = torch.squeeze(token_embeddings, dim=1)  # Remove the "batches" dimension
         token_embeddings = token_embeddings.permute(1,0,2)  # Rearrange the model dimensions.
-        print(f'Size of token embeddings is {token_embeddings.size()}')
         return token_embeddings
 
 

@@ -10,8 +10,8 @@ parser.add_argument('model_path', help='a directory containing the output from '
 parser.add_argument('context_file', help='a text file to use as context to create embeddings', type=str)
 parser.add_argument('vocab_file', help='a newline-delimited list of vocabulary words for which ' \
     'to generate embeddings', type=str)
-parser.add_argument('output_file', help='path to the file where embeddings should be written', type=str)
-parser.add_argument('--count_file', help='optional path to a file where counts of the number ' \
+parser.add_argument('output_file', help='path and filename where embeddings should be written', type=str)
+parser.add_argument('--count_file', help='optional path and filename for a file where counts of the number ' \
     'of context sentences per vocabulary word should be written', default=None, type=str)
 args = parser.parse_args()
 
@@ -57,7 +57,7 @@ if __name__ == "__main__":
                         # Sum the individual token contextual embeddings for the whole vocab word, for this line.
                         tensor_layer = torch.zeros([1, FEATURE_COUNT])
                         for i in range(len(indices)):
-                            utils.preview_token_embedding(v_tokens, token_vecs_layer, i, indices, tokenizer)
+                            # utils.preview_token_embedding(v_tokens, token_vecs_layer, i, indices, tokenizer)
                             tensor_layer += token_vecs_layer[indices[i]]
                         # If our vocab word is broken into more than one token, we need to get the mean of the token embeddings.
                         tensor_layer /= len(indices)
