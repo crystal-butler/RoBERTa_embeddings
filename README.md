@@ -9,7 +9,7 @@ Assuming you now have an activated virtual environment, all the other necessary 
 
 ## Other Requirements
 ### A Model with Hidden States Saved
-The Python modules in this repo are meant to be used to create static contextual embeddings from a RoBERTa masked language model from a fine-tuned huggingface transformers base model. They distill embeddings from one or more of the hidden layers of the fine-tuned model. In order to access those layers, you must output RoBERTa's hidden states when performing the fine-tuning. Hidden layers can be saved by providing a configuration file with output_hidden_states set to true:
+The Python modules in this repo are meant to be used to create static contextual embeddings from a fine-tuned huggingface transformers RoBERTa masked language model, either the base or large variety. They distill embeddings from one or more of the hidden layers of the fine-tuned model. In order to access those layers, you must output RoBERTa's hidden states when performing the fine-tuning. Hidden layers can be saved by providing a configuration file with output_hidden_states set to true:
 `"output_hidden_states": true`
 By default, this option is set to false.
 You can pass the configuration file to the `run_language_modeling.py` script using this option:
