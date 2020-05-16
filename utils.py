@@ -1,3 +1,7 @@
+import torch
+from transformers import RobertaTokenizer, RobertaModel, RobertaForMaskedLM, RobertaConfig
+
+
 def make_vocab(vocab_file):
     """Convert a file of newline separated words into a Python list and return it."""
     vocab = []
