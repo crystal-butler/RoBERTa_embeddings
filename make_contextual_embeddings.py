@@ -29,8 +29,8 @@ if __name__ == "__main__":
     for v in vocab:
         with open(args.context_file, 'r') as lines:
             v_sum = torch.zeros([1, FEATURE_COUNT])
-            v_tokens = tokenize_text(v, tokenizer)
-            print_tokenized_text(v_tokens, tokenizer)
+            v_tokens = utils.tokenize_text(v, tokenizer)
+            utils.print_tokenized_text(v_tokens, tokenizer)
             count_sentence = 0
             count_tensor = 0
             
@@ -45,20 +45,20 @@ if __name__ == "__main__":
                             print(f'\nInstance {count_sentence} of {tokenizer.decode(v_tokens[1:-1]).strip()}.')
                             break  # We'll take the first instance of the word and discard the rest of the line.
                     # Split the new sentence-based line into tokens.
-                    line_tokens = tokenize_text(line, tokenizer)               
+                    line_tokens = utils.tokenize_text(line, tokenizer)               
                     # Get the indices of the line at which our vocabulary word tokens are located.
-                    indices = get_vocab_indices(v_tokens, line_tokens, tokenizer)                             
+                    indices = utils.get_vocab_indices(v_tokens, line_tokens, tokenizer)                             
 
                     # If the vocabulary word was found, process the containing line.
                     if indices:
                         # Get the feature vectors for all tokens in the line/sentence.
-                        token_embeddings = create_token_embeddings(line_tokens)
-                        # Select a method for extracting specific layers of the model.
-                        token_vecs_layer = get_layer_token_vecs(token_embeddings, 12)
+                        token_embeddings = utils.create_token_embeddings(line_tokens)
+                        # Select a method for distilling layers of the model.
+                        token_vecs_layer = distill_layers.get_layer_token_vecs(token_embeddings, 12)
                         # Sum the individual token contextual embeddings for the whole vocab word, for this line.
                         tensor_layer = torch.zeros([1, FEATURE_COUNT])
                         for i in range(len(indices)):
-                            preview_token_embedding(v_tokens, token_vecs_layer, i, indices, tokenizer)
+                            utils.preview_token_embedding(v_tokens, token_vecs_layer, i, indices, tokenizer)
                             tensor_layer += token_vecs_layer[indices[i]]
                         # If our vocab word is broken into more than one token, we need to get the mean of the token embeddings.
                         tensor_layer /= len(indices)
@@ -76,7 +76,6 @@ if __name__ == "__main__":
             # Get the mean embedding for the word.
             v_mean = v_sum / count_tensor
             print(f'Mean of {count_tensor} tensors is: {v_mean[0][:5]} (first 5 of {len(v_mean[0])} features in tensor)')
-            write_embedding(output_file, v, v_mean)
-            write_line_count(count_file, v, count_tensor)
-        end = timer()
+            utils.write_embedding(output_file, v, v_mean)
+            utils.write_line_count(count_file, v, count_tensor)
         print(f'Run time for {v} was {end - start} seconds.')
