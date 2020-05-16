@@ -53,3 +53,16 @@ def preview_token_embedding(tokenized_text, layer, index, index_list, tokenizer)
     v_index = i % len(tokenized_text[1:-1])
     print(f'{tokenizer.decode(tokenized_text[v_index + 1]).strip()} at index {index_list[index]}: ', \
           f'{layer[index_list[index]][:5].tolist()}')
+
+
+def write_embedding(embeddings_file, vocab_word, contextual_embedding):
+    """Save an embedding to an output file."""
+    try:
+        with open(embeddings_file, 'a') as f:
+            f.write(vocab_word)
+            for value in contextual_embedding[0]:
+                f.write(' ' + str(value.item()))
+            f.write('\n')
+        print(f'Saved the embedding for {vocab_word}.')
+    except:
+        print('Oh no! Unable to write to the embeddings file.')
