@@ -29,3 +29,18 @@ def get_vocab_indices(v_tokens, line_tokens, tokenizer):
             if tokenizer.decode(token_str).strip() == tokenizer.decode(t).strip():
                 indices.append(i)
     return indices
+
+
+def create_token_embeddings(tokenized_text):
+    """Convert the model into a more usable format: a tensor of size [<token_count>, <layer_count>, <feature_count>]."""
+    input_ids = torch.tensor(tokenized_text).unsqueeze(0)  # Batch size 1
+    with torch.no_grad():
+        outputs = model(input_ids, masked_lm_labels=input_ids)
+        encoded_layers = outputs[2]
+        token_embeddings = torch.stack(encoded_layers, dim=0)  # Concatenate the tensors for all layers.
+        token_embeddings = torch.squeeze(token_embeddings, dim=1)  # Remove the "batches" dimension
+        token_embeddings = token_embeddings.permute(1,0,2)  # Rearrange the model dimensions.
+        print(f'Size of token embeddings is {token_embeddings.size()}')
+        return token_embeddings
+
+
