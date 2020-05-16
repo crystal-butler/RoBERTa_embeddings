@@ -1,3 +1,7 @@
+import torch
+from transformers import RobertaTokenizer, RobertaModel, RobertaForMaskedLM, RobertaConfig
+
+
 def sum_last_four_token_vecs(token_embeddings):
     """Sum the last 4 layers' features and return the resulting vector."""
     token_vecs_sum_last_four = []
