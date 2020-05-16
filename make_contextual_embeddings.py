@@ -42,7 +42,6 @@ if __name__ == "__main__":
                         if v in sentence.lower():
                             line = sentence
                             count_sentence += 1
-                            print(f'\nInstance {count_sentence} of {tokenizer.decode(v_tokens[1:-1]).strip()}.')
                             break  # We'll take the first instance of the word and discard the rest of the line.
                     # Split the new sentence-based line into tokens.
                     line_tokens = utils.tokenize_text(line, tokenizer)               
@@ -66,7 +65,6 @@ if __name__ == "__main__":
                         # Add the embedding distilled from this line to the sum of embeddings for all lines.
                         v_sum += tensor_layer
                         count_tensor += 1
-                        print(f'Grand sum of {count_tensor} tensor sets is: {v_sum[0][:5].tolist()}')
 
                 # Stop processing lines once we've found 2000 instances of our vocab word.
                 if count_tensor >= MAX_LINES:
