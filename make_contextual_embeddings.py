@@ -1,5 +1,7 @@
 import argparse
 from transformers import RobertaTokenizer, RobertaModel, RobertaForMaskedLM, RobertaConfig
+import utils
+import distill_layers
 
 parser = argparse.ArgumentParser()
 parser.add_argument('model_path', help='a directory containing the output from ' \
