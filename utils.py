@@ -66,3 +66,12 @@ def write_embedding(embeddings_file, vocab_word, contextual_embedding):
         print(f'Saved the embedding for {vocab_word}.')
     except:
         print('Oh no! Unable to write to the embeddings file.')
+
+
+def write_line_count(count_file, vocab_word, line_count):
+    try:
+        with open(count_file, 'a') as counts:
+            counts.write(vocab_word + ', ' + str(line_count) + '\n')
+        print(f'Saved the count of sentences used to create {vocab_word} embedding.')
+    except:
+        print('Wha?! Could not write the sentence count.')
