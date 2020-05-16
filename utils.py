@@ -20,3 +20,12 @@ def print_tokenized_text(tokens, tokenizer):
     for t in tokens[1:-1]:
         print(tokenizer.decode(t).strip())
 
+
+def get_vocab_indices(v_tokens, line_tokens, tokenizer):
+    """Search a line for all tokens of a vocabulary word, and return the indices of their locations."""
+    indices = []              
+    for t in v_tokens[1:-1]:
+        for i, token_str in enumerate(line_tokens):
+            if tokenizer.decode(token_str).strip() == tokenizer.decode(t).strip():
+                indices.append(i)
+    return indices
