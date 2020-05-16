@@ -76,6 +76,5 @@ if __name__ == "__main__":
             # Get the mean embedding for the word.
             v_mean = v_sum / count_tensor
             print(f'Mean of {count_tensor} tensors is: {v_mean[0][:5]} (first 5 of {len(v_mean[0])} features in tensor)')
-            utils.write_embedding(output_file, v, v_mean)
-            utils.write_line_count(count_file, v, count_tensor)
-        print(f'Run time for {v} was {end - start} seconds.')
+            utils.write_embedding(args.output_file, v, v_mean)
+            utils.write_line_count(args.count_file, v, count_tensor)
