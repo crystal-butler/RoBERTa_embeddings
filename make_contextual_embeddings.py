@@ -52,7 +52,7 @@ if __name__ == "__main__":
                     # If the vocabulary word was found, process the containing line.
                     if indices:
                         # Get the feature vectors for all tokens in the line/sentence.
-                        token_embeddings = utils.create_token_embeddings(line_tokens)
+                        token_embeddings = utils.create_token_embeddings(model, line_tokens)
                         # Select a method for distilling layers of the model.
                         token_vecs_layer = distill_layers.get_layer_token_vecs(token_embeddings, 12)
                         # Sum the individual token contextual embeddings for the whole vocab word, for this line.
@@ -78,4 +78,3 @@ if __name__ == "__main__":
             print(f'Mean of {count_tensor} tensors is: {v_mean[0][:5]} (first 5 of {len(v_mean[0])} features in tensor)')
             utils.write_embedding(args.output_file, v, v_mean)
             utils.write_line_count(args.count_file, v, count_tensor)
-            

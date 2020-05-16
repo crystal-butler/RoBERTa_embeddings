@@ -35,7 +35,7 @@ def get_vocab_indices(v_tokens, line_tokens, tokenizer):
     return indices
 
 
-def create_token_embeddings(tokenized_text):
+def create_token_embeddings(model, tokenized_text):
     """Convert the model into a more usable format: a tensor of size [<token_count>, <layer_count>, <feature_count>]."""
     input_ids = torch.tensor(tokenized_text).unsqueeze(0)  # Batch size 1
     with torch.no_grad():
