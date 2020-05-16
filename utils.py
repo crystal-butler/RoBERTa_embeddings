@@ -43,6 +43,7 @@ def create_token_embeddings(tokenized_text):
         print(f'Size of token embeddings is {token_embeddings.size()}')
         return token_embeddings
 
+
 def preview_token_embedding(tokenized_text, layer, index, index_list, tokenizer):
     """Print the first 5 feature values from a model layer for tokens at specific line indices."""
     v_index = i % len(tokenized_text[1:-1])
