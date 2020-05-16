@@ -18,4 +18,6 @@ tokenizer = RobertaTokenizer.from_pretrained(args.model_path)
 model = RobertaForMaskedLM.from_pretrained(args.model_path)
 model.eval()
 
-
+vocab = utils.make_vocab(args.vocab_file)
+FEATURE_COUNT = 768  # Change this value to 1024 for the large RoBERTa model.
+MAX_LINES = 2000  # Maximum number of context lines to average per vocabulary embedding.
