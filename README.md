@@ -1,11 +1,11 @@
 # RoBERTa_embeddings
-Distill static contextual embeddings from a huggingface transformers RoBERTa model for a specific vocabulary.
+Distill static contextual embeddings from a huggingface transformers RoBERTa model for a specific vocabulary. To learn more about static and dynamic word embeddings, check out these Towards Data Science posts from [Ajit Rajasekharan](https://towardsdatascience.com/examining-berts-raw-embeddings-fd905cb22df7) or [Adrien Sieg](https://towardsdatascience.com/from-pre-trained-word-embeddings-to-pre-trained-language-models-focus-on-bert-343815627598).
 
 ## Installation
 Install the [huggingface transformers library](https://github.com/huggingface/transformers). Their instructions include guidance about intstalling into a Python virtual environment, which is the recommended approach. An easy way to build a fine-tuned RoBERTa model is to follow their [RoBERTa language modeling example](https://huggingface.co/transformers/examples.html#language-model-training), modified to suit your needs. Be sure to install from source if you want to work with the examples.
 
 Assuming you now have an activated virtual environment, all the other necessary libraries can be installed to it by executing (from within the RoBERTa_embeddings directory):
-`pip install -r requirements.txt`
+`pip install -r requirements.txt`.
 
 ## Other Requirements
 ### A Model with Hidden States Saved
